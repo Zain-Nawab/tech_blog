@@ -41,8 +41,8 @@
                     
                     <td>{{ $cat->name }}</td>
                     <td>
-                        <a href="{{ route('post.edit', $cat->id) }}" class="btn btn-sm btn-warning me-1">Edit</a>
-                        <a href="{{ route('post.delete', $cat->id) }}" class="btn btn-sm btn-danger me-1">Delete</a>
+                        <a href="{{ route('cat.edit', $cat->id) }}" class="btn btn-sm btn-warning me-1">Edit</a>
+                        <a href="{{ route('cat.delete', $cat->id) }}" class="btn btn-sm btn-danger me-1">Delete</a>
 
                     </td>
                 </tr>

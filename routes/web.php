@@ -44,10 +44,14 @@ Route::middleware(['auth'])->prefix('/dashboard')->group( function() {
 });
 
 // category routes only for admin
-Route::middleware(['auth'])->prefix('/dashboard')->group( function() {
+Route::middleware(['auth', 'is_admin'])->prefix('/dashboard')->group( function() {
+
+    //Route::resource('cat', CategoryController::class);
     Route::get("/cats", [CategoryController::class, 'index'])->name('cats.index');
     Route::get("/cat/create", [CategoryController::class, 'create'])->name('cat.create');
     Route::post("/cat/store", [CategoryController::class, 'store'])->name('cat.store');
+    Route::get("/cat/delete/{id}", [CategoryController::class, 'destroy'])->name('cat.delete');
+    Route::get("/cat/edit/{id}", [CategoryController::class, 'edit'])->name('cat.edit');
 });
 
 

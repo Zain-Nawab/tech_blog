@@ -5,6 +5,7 @@ namespace App\Http\Controllers\dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class CategoryController extends Controller
 {
@@ -69,8 +70,16 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Request $request, $id)
     {
-        //
+        $cat = Category::findOrfail($id);
+        
+        // delete img 
+        if($cat->photo_path && Storage::disk('public')->exists($cat->photo_path)){
+            Storage::disk('public')->delete($cat->photo_path);
+        }
+        $cat->delete();
+
+        return redirect()->route("cats.index")->with('delete', "Post deleted Successfully");
     }
 }
