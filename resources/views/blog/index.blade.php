@@ -15,8 +15,8 @@
           <img src=" {{ asset('storage/' . $post->photo_path) }} " class="w-100" alt="Nature">
           <div class="p-3">
             <a href="{{ route("blog.single", $post->id) }}"><h5> {{ $post->title }} </h5></a>
-            <p class="text-muted">by Sarah Lee</p>
-            <p class="mb-0">Discover how spending time in nature can improve your mental health and creativity.</p>
+            <p class="text-muted">By {{ $post->user->name }} - {{ $post->created_at->diffForHumans() }}</p>
+            <p class="mb-0">{{ $post->excerpt }}</p>
           </div>
 
         </div>

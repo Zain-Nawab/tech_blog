@@ -20,6 +20,7 @@
           <a class="nav-link active" href="{{ route('dashboard.index') }}">Dashboard</a>
           <a class="nav-link" href="{{ route('post.index') }}">Blog Posts</a>
           <a class="nav-link" href="{{ route('post.create') }}">Create Post</a>
+          <a class="nav-link" href="{{ route('cats.index') }}">Categories</a>
           <a class="nav-link" href="#">Comments</a>
           <a class="nav-link" href="{{ route('dashboard.settings') }}">Settings</a>
           <form method="POST" action="{{ route('logout') }}">

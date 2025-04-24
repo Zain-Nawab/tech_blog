@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\PostController;
 use Illuminate\Support\Facades\Route;
@@ -42,6 +43,12 @@ Route::middleware(['auth'])->prefix('/dashboard')->group( function() {
     
 });
 
+// category routes only for admin
+Route::middleware(['auth'])->prefix('/dashboard')->group( function() {
+    Route::get("/cats", [CategoryController::class, 'index'])->name('cats.index');
+    Route::get("/cat/create", [CategoryController::class, 'create'])->name('cat.create');
+    Route::post("/cat/store", [CategoryController::class, 'store'])->name('cat.store');
+});
 
 
 // Route::get('/', function () {
