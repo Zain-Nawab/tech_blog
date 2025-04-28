@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -27,27 +28,34 @@ class PostController extends Controller
     }
 
     public function create(){
-        return view('dashboard.posts.create');
+
+        $category = Category::all();
+
+        return view('dashboard.posts.create', ['cats' => $category]);
     }
 
     public function store(Request $request){
 
+        // dd($request->all());
         // validate data
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|string|max:120',
             'content' => 'required',
             'excerpt' => 'required',
+            'category_id' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg|max:5048',
         ]);
 
         // upload image
         $path = $request->file('image')->store('uploads', 'public');
 
+
         // store data in db 
         Post::create([
             'title' => $request->input('title'),
             'content' => $request->input('content'),
             'user_id' => Auth::user()->id,
+            'category_id' => $request->input('category_id'),
             'excerpt' => $request->input('excerpt'),
             'photo_path' => $path,
         ]);

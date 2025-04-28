@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     
-    protected $fillable = ['title', 'content', 'excerpt', 'photo_path', 'user_id', 'category-id'];
+    protected $fillable = ['title', 'content', 'excerpt', 'photo_path', 'user_id', 'category_id'];
 
     // One to one relation 
     public function user(){
