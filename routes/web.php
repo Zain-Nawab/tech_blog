@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\PostController;
@@ -40,6 +41,8 @@ Route::middleware(['auth'])->prefix('/dashboard')->group( function() {
     Route::get('/post/delete/{id}', [PostController::class, 'delete'])->name('post.delete');
     Route::get('/post/edit/{id}', [PostController::class, 'edit'])->name('post.edit');
     Route::post('/post/update/{id}', [PostController::class, 'update'])->name('post.update');
+
+    Route::post('/comment/store', [CommentController::class, 'store'])->name('comment.store');
     
 });
 

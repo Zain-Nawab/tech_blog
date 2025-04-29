@@ -23,5 +23,58 @@
 
   <!-- Post Body -->
   <div class="post-body"> {!! $post->content !!} </div>
+
+  <!-- Post Body -->
+  @guest
+   <div class="alert alert-info">
+    Please <a class="fw-bold underline" href="{{ route("loginForm") }}">Login</a> to comment on this post
+  </div>
+  @endguest
+
+
+  <div class="border p-3">
+    <form method="post" action="{{ route("comment.store") }}">
+      @csrf
+      <input type="hidden" value="{{ $post->id }}" name="post_id">
+      <div class="mb-3 form-check">
+        <h5>Leave Comment</h5>
+        <textarea name="comment" class="form-control"></textarea>
+        @error('comment')
+          <div class="alert alert-danger my-2">{{$message}}</div>
+        @enderror
+
+        @if(session('success'))
+        <div class="alert alert-success my-2">
+            {{ session('success') }}
+        </div>
+        @endif
+
+        @if(session('error'))
+        <div class="alert alert-danger my-2">
+            {{ session('error') }}
+        </div>
+        @endif
+
+        <button type="submit" class="btn btn-primary btn-sm my-3">Send Your Comment</button>
+      </div>
+      
+    </form>
+
+
+    <div class="border">
+      <h4>All Post Comments</h4>
+      @if (count($post->comments) > 0)
+        @foreach ($post->comments as $comment)
+          <div class="p-3 bg-warning-subtle my-2">
+            {{ $comment->comment }}
+            
+              by {{ $comment->user->name }}
+            
+          </div>
+        @endforeach
+      @endif
+    </div>
+
+
 </div>
 @endsection

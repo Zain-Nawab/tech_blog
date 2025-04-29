@@ -47,8 +47,8 @@
                     </td>
                     <td>{{ $post->created_at->format('d M, Y') }}</td>
                     <td>
-                        <a href="{{ route('post.edit', $post->id) }}" class="btn btn-sm btn-warning me-1">Edit</a>
-                        <a href="{{ route('post.delete', $post->id) }}" class="btn btn-sm btn-danger me-1">Delete</a>
+                        <a href="{{ route('post.edit', $post->id) }}" class="btn btn-sm btn-warning me-2">Edit</a>
+                        <a href="{{ route('post.delete', $post->id) }}" class="btn btn-sm btn-danger me-2">Delete</a>
 
                     </td>
                 </tr>
