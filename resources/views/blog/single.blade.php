@@ -76,5 +76,24 @@
     </div>
 
 
+    <form method="POST" action="{{ route('posts.like', $post) }}">
+      @csrf
+      <button type="submit">
+        @if(auth()->check())
+        @if($post->isLikedBy(auth()->user()))
+            ❤️ Liked
+        @else
+            🤍 Like
+        @endif
+    @else
+        <a href="{{ route('loginForm') }}" class="text-blue-500">Login to like</a>
+    @endif
+      </button>
+  </form>
+  
+  <p>{{ $post->likes()->count() }} Likes</p>
+  
+
+
 </div>
 @endsection

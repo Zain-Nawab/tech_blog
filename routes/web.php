@@ -7,6 +7,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\dashboard\CategoryController;
 use App\Http\Controllers\dashboard\DashboardController;
 use App\Http\Controllers\dashboard\PostController;
+use App\Http\Controllers\LikeController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -56,6 +57,11 @@ Route::middleware(['auth', 'is_admin'])->prefix('/dashboard')->group( function()
     Route::get("/cat/delete/{id}", [CategoryController::class, 'destroy'])->name('cat.delete');
     Route::get("/cat/edit/{id}", [CategoryController::class, 'edit'])->name('cat.edit');
 });
+
+
+
+Route::middleware('auth')->post('/posts/{post}/like', [LikeController::class, 'toggle'])->name('posts.like');
+
 
 
 // Route::get('/', function () {
