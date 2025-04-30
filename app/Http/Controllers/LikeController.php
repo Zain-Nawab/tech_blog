@@ -15,7 +15,7 @@ class LikeController extends Controller
     
         if ($like) {
             $like->delete();
-            return response()->json(['liked' => false]);
+            return back();
         } else {
             $post->likes()->create(['user_id' => $user->id]);
             return back();
