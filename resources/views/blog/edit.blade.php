@@ -7,7 +7,7 @@
 
 @section("main")
  {{-- Form Start --}}
- <form  id='createForm' action="{{ route('post.store') }}" method="POST" enctype="multipart/form-data">
+ <form  id='createForm' action="{{ route('post.update', $post->id) }}" method="POST" enctype="multipart/form-data">
     @csrf
 
     {{-- Title --}}
@@ -65,7 +65,7 @@
         
         contentArea.value = html;
 
-        document.querySclector("#createForm").submit();
+        document.querySelector("#createForm").submit();
     } );
 
   </script>

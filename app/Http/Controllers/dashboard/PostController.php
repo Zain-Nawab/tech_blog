@@ -81,7 +81,8 @@ class PostController extends Controller
     }
 
     public function update(Request $request, $id){
-        $post = Post::findOrdail($id);
+        $post = Post::findOrfail($id);
+        
 
         // validate data
         $request->validate([

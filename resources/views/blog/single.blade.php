@@ -78,7 +78,7 @@
 
     <form method="POST" action="{{ route('posts.like', $post) }}">
       @csrf
-      <button type="submit">
+      <button type="submit" class="mb-2">
         @if(auth()->check())
         @if($post->isLikedBy(auth()->user()))
             ❤️ Liked
@@ -91,7 +91,7 @@
       </button>
   </form>
   
-  <p>{{ $post->likes()->count() }} Likes</p>
+  <p>{{ $post->likes()->count() }} All Post Likes</p>
   
 
 
